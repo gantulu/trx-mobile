@@ -1,92 +1,345 @@
 {
   "blueprint": {
-    "version": "1.0",
+    "version": "1.1",
     "type": "app_ui_blueprint",
     "app": {
       "name": "TRX Mobile",
       "platform": "web",
-      "layout": "mobile"
+      "layout": "mobile",
+      "viewport": {
+        "minWidth": 320,
+        "maxWidth": 500
+      },
+      "designSystem": "trx-mobile"
     },
     "shells": {
       "appShell": {
         "header": true,
         "main": {
-          "pages": [
-            "Home",
-            "Catalog",
-            "Profile"
-          ]
+          "pages": ["Home", "Catalog", "Profile"]
         },
         "overlay": {
           "enabled": true,
-          "components": [
-            "Modal",
-            "Drawer",
-            "Toast",
-            "Loading"
-          ]
+          "components": ["Modal", "Drawer", "Toast", "Loading"]
         },
         "bottomActionBar": false
       },
       "standalone": {
         "header": true,
         "main": {
-          "pages": [
-            "ProductDetailPage",
-            "CheckoutPage",
-            "TrackingPage"
-          ]
+          "pages": ["ProductDetailPage", "CheckoutPage", "TrackingPage"]
         },
         "bottomActionBar": true
+      }
+    },
+    "globalLayout": {
+      "page": {
+        "width": "100%",
+        "minHeight": "100dvh",
+        "overflow": "auto"
+      },
+      "content": {
+        "maxWidth": 500,
+        "margin": "0 auto"
+      },
+      "spacing": {
+        "pageHorizontal": 16,
+        "sectionGap": 24,
+        "componentGap": 12
       }
     },
     "pages": {
       "Home": {
         "type": "page",
         "shell": "appShell",
-        "components": []
+        "route": "/",
+        "components": [
+          "HomeHero",
+          "QuickActions",
+          "FeaturedProducts",
+          "PromotionSection",
+          "RecentActivity"
+        ]
       },
       "Catalog": {
         "type": "page",
         "shell": "appShell",
-        "components": []
+        "route": "/catalog",
+        "components": [
+          "CatalogHeader",
+          "CategoryFilter",
+          "SearchBar",
+          "ProductGrid",
+          "CatalogEmptyState"
+        ]
       },
       "Profile": {
         "type": "page",
         "shell": "appShell",
-        "components": []
+        "route": "/profile",
+        "components": [
+          "ProfileHeader",
+          "ProfileSummary",
+          "ProfileMenu",
+          "AccountActions"
+        ]
       },
       "ProductDetailPage": {
         "type": "page",
         "shell": "standalone",
-        "components": []
+        "route": "/product/:productId",
+        "components": [
+          "ProductGallery",
+          "ProductInfo",
+          "ProductOptions",
+          "ProductDescription",
+          "ProductDeliveryInfo"
+        ],
+        "bottomActionBar": "ProductDetailActionBar"
       },
       "CheckoutPage": {
         "type": "page",
         "shell": "standalone",
-        "components": []
+        "route": "/checkout",
+        "components": [
+          "CheckoutSummary",
+          "ShippingAddress",
+          "DeliveryMethod",
+          "PaymentMethod",
+          "OrderSummary"
+        ],
+        "bottomActionBar": "CheckoutActionBar"
       },
       "TrackingPage": {
         "type": "page",
         "shell": "standalone",
-        "components": []
+        "route": "/tracking/:orderId",
+        "components": [
+          "TrackingHeader",
+          "OrderStatus",
+          "TrackingTimeline",
+          "DeliveryInformation",
+          "OrderItems"
+        ],
+        "bottomActionBar": "TrackingActionBar"
       }
     },
-    "components": {},
+    "components": {
+      "AppHeader": {
+        "type": "layout",
+        "children": ["Logo", "HeaderTitle", "HeaderActions"]
+      },
+      "BottomNavigation": {
+        "type": "navigation",
+        "items": ["Home", "Catalog", "Profile"]
+      },
+      "HomeHero": {
+        "type": "section",
+        "children": ["HeroImage", "HeroTitle", "HeroSubtitle", "HeroAction"]
+      },
+      "QuickActions": {
+        "type": "action_group",
+        "children": ["QuickActionItem"]
+      },
+      "FeaturedProducts": {
+        "type": "product_collection",
+        "children": ["ProductCard"]
+      },
+      "PromotionSection": {
+        "type": "promotion_collection",
+        "children": ["PromotionCard"]
+      },
+      "RecentActivity": {
+        "type": "activity_collection",
+        "children": ["ActivityItem"]
+      },
+      "CatalogHeader": {
+        "type": "section_header",
+        "children": ["PageTitle", "FilterAction"]
+      },
+      "CategoryFilter": {
+        "type": "filter",
+        "children": ["CategoryChip"]
+      },
+      "SearchBar": {
+        "type": "input",
+        "children": ["SearchIcon", "SearchInput", "ClearAction"]
+      },
+      "ProductGrid": {
+        "type": "grid",
+        "children": ["ProductCard"]
+      },
+      "ProductCard": {
+        "type": "card",
+        "children": ["ProductImage", "ProductBadge", "ProductName", "ProductPrice", "ProductAction"]
+      },
+      "ProfileHeader": {
+        "type": "section",
+        "children": ["Avatar", "UserName", "UserMeta"]
+      },
+      "ProfileSummary": {
+        "type": "summary",
+        "children": ["SummaryItem"]
+      },
+      "ProfileMenu": {
+        "type": "menu",
+        "children": ["MenuItem"]
+      },
+      "AccountActions": {
+        "type": "action_group",
+        "children": ["LogoutAction"]
+      },
+      "ProductGallery": {
+        "type": "gallery",
+        "children": ["ProductImage", "GalleryIndicator"]
+      },
+      "ProductInfo": {
+        "type": "section",
+        "children": ["ProductName", "ProductRating", "ProductPrice"]
+      },
+      "ProductOptions": {
+        "type": "options",
+        "children": ["OptionGroup", "OptionItem"]
+      },
+      "ProductDescription": {
+        "type": "content"
+      },
+      "ProductDeliveryInfo": {
+        "type": "information",
+        "children": ["DeliveryItem"]
+      },
+      "CheckoutSummary": {
+        "type": "summary",
+        "children": ["CartItem"]
+      },
+      "ShippingAddress": {
+        "type": "form_section",
+        "children": ["AddressCard", "AddressAction"]
+      },
+      "DeliveryMethod": {
+        "type": "selection",
+        "children": ["DeliveryOption"]
+      },
+      "PaymentMethod": {
+        "type": "selection",
+        "children": ["PaymentOption"]
+      },
+      "OrderSummary": {
+        "type": "summary",
+        "children": ["SummaryRow", "TotalRow"]
+      },
+      "TrackingHeader": {
+        "type": "section",
+        "children": ["OrderNumber", "TrackingStatus"]
+      },
+      "OrderStatus": {
+        "type": "status"
+      },
+      "TrackingTimeline": {
+        "type": "timeline",
+        "children": ["TrackingStep"]
+      },
+      "DeliveryInformation": {
+        "type": "information",
+        "children": ["DeliveryItem"]
+      },
+      "OrderItems": {
+        "type": "collection",
+        "children": ["OrderItem"]
+      },
+      "ProductDetailActionBar": {
+        "type": "bottom_action_bar",
+        "actions": ["AddToCart", "BuyNow"]
+      },
+      "CheckoutActionBar": {
+        "type": "bottom_action_bar",
+        "actions": ["PlaceOrder"]
+      },
+      "TrackingActionBar": {
+        "type": "bottom_action_bar",
+        "actions": ["ContactSupport", "ViewOrder"]
+      },
+      "Modal": {
+        "type": "overlay"
+      },
+      "Drawer": {
+        "type": "overlay"
+      },
+      "Toast": {
+        "type": "feedback"
+      },
+      "Loading": {
+        "type": "feedback"
+      }
+    },
     "navigation": {
-      "routes": []
+      "type": "client_side",
+      "routes": [
+        { "path": "/", "page": "Home" },
+        { "path": "/catalog", "page": "Catalog" },
+        { "path": "/profile", "page": "Profile" },
+        { "path": "/product/:productId", "page": "ProductDetailPage" },
+        { "path": "/checkout", "page": "CheckoutPage" },
+        { "path": "/tracking/:orderId", "page": "TrackingPage" }
+      ],
+      "bottomNavigation": ["Home", "Catalog", "Profile"],
+      "protectedRoutes": []
     },
     "states": {
-      "global": [
-        "loading",
-        "error",
-        "success"
-      ],
-      "overlay": [
-        "modal",
-        "drawer",
-        "toast"
-      ]
+      "global": ["loading", "error", "success", "empty"],
+      "page": ["idle", "loading", "ready", "error", "empty"],
+      "overlay": ["closed", "modal", "drawer", "toast", "loading"],
+      "form": ["idle", "editing", "submitting", "success", "error"],
+      "order": ["draft", "pending", "paid", "processing", "shipped", "delivered", "cancelled"]
+    },
+    "dataModels": {
+      "Product": ["id", "name", "description", "image", "price", "category", "rating"],
+      "CartItem": ["productId", "quantity", "price", "options"],
+      "Address": ["id", "name", "phone", "address", "city", "postalCode"],
+      "Order": ["id", "items", "address", "deliveryMethod", "paymentMethod", "total", "status"],
+      "TrackingEvent": ["id", "status", "title", "description", "timestamp"]
+    },
+    "designTokens": {
+      "colors": {
+        "primary": "var(--color-primary)",
+        "background": "var(--color-background)",
+        "surface": "var(--color-surface)",
+        "text": "var(--color-text)",
+        "muted": "var(--color-muted)",
+        "border": "var(--color-border)",
+        "success": "var(--color-success)",
+        "error": "var(--color-error)"
+      },
+      "radius": {
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "pill": 999
+      },
+      "spacing": {
+        "xs": 4,
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "xl": 24,
+        "xxl": 32
+      }
+    },
+    "accessibility": {
+      "semanticHTML": true,
+      "keyboardNavigation": true,
+      "focusVisible": true,
+      "ariaLabels": true,
+      "colorContrast": "AA"
+    },
+    "rules": {
+      "appShellHasBottomActionBar": false,
+      "standaloneHasBottomActionBar": true,
+      "standalonePagesDoNotUseBottomNavigation": true,
+      "pageComponentsMustBeDeclared": true,
+      "routesMustMapToPages": true,
+      "noUndeclaredComponents": true,
+      "preserveBlueprintStructure": true
     }
   }
 }
