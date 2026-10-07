@@ -1,48 +1,34 @@
-import { Link, Route, Routes } from "react-router";
+import { Routes, Route } from "react-router";
+import AppShell from "./layouts/AppShell";
+import Standalone from "./layouts/Standalone";
+import PlaceholderPage from "./components/common/PlaceholderPage";
 
-function FoundationPage() {
+function AppPage({ title, description }) {
   return (
-    <main className="foundation-page">
-      <section className="foundation-card">
-        <p className="eyebrow">TRX Mobile</p>
-        <h1>Foundation ready</h1>
-        <p>
-          Phase 1 establishes the React, Vite, routing, and global styling
-          foundation. UI shells and application pages are implemented in later
-          phases according to blueprint.json.
-        </p>
-        <nav className="foundation-nav" aria-label="Foundation navigation">
-          <Link to="/">Home</Link>
-          <Link to="/catalog">Catalog</Link>
-          <Link to="/profile">Profile</Link>
-        </nav>
-      </section>
-    </main>
+    <AppShell>
+      <PlaceholderPage title={title} description={description} />
+    </AppShell>
   );
 }
 
-function NotFoundPage() {
+function StandalonePage({ title, description, action }) {
   return (
-    <main className="foundation-page">
-      <section className="foundation-card">
-        <p className="eyebrow">404</p>
-        <h1>Page not found</h1>
-        <Link to="/">Back to Home</Link>
-      </section>
-    </main>
+    <Standalone bottomActionBar={action ? <button type="button">{action}</button> : null}>
+      <PlaceholderPage title={title} description={description} />
+    </Standalone>
   );
 }
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<FoundationPage />} />
-      <Route path="/catalog" element={<FoundationPage />} />
-      <Route path="/profile" element={<FoundationPage />} />
-      <Route path="/product/:productId" element={<FoundationPage />} />
-      <Route path="/checkout" element={<FoundationPage />} />
-      <Route path="/tracking/:orderId" element={<FoundationPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/" element={<AppPage title="Home" description="Home page foundation. Page components will be implemented in Phase 3." />} />
+      <Route path="/catalog" element={<AppPage title="Catalog" description="Catalog page foundation. Page components will be implemented in Phase 3." />} />
+      <Route path="/profile" element={<AppPage title="Profile" description="Profile page foundation. Page components will be implemented in Phase 3." />} />
+      <Route path="/product/:productId" element={<StandalonePage title="Product Detail" description="Product detail foundation." action="Add to Cart" />} />
+      <Route path="/checkout" element={<StandalonePage title="Checkout" description="Checkout foundation." action="Place Order" />} />
+      <Route path="/tracking/:orderId" element={<StandalonePage title="Tracking" description="Tracking foundation." action="Contact Support" />} />
+      <Route path="*" element={<AppShell><PlaceholderPage title="Page not found" description="The requested route does not exist." /></AppShell>} />
     </Routes>
   );
 }
