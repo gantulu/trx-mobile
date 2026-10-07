@@ -1,3 +1,6 @@
-export default function ProductDescription() {
-  return <section className="ui-section"><h2>Description</h2><p className="ui-muted">Product description will be connected to the product model.</p></section>;
+import { useProduct } from "../../hooks/useProducts";
+
+export default function ProductDescription({ productId }) {
+  const product = useProduct(productId);
+  return <section className="ui-section"><h2>Description</h2><p className="ui-muted">{product?.description ?? "Product not found."}</p></section>;
 }
