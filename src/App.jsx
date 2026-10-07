@@ -1,20 +1,24 @@
-import { Routes, Route } from "react-router";
+import { Route, Routes } from "react-router";
 import AppShell from "./layouts/AppShell";
 import Standalone from "./layouts/Standalone";
+import HomePage from "./pages/Home/HomePage";
+import CatalogPage from "./pages/Catalog/CatalogPage";
+import ProfilePage from "./pages/Profile/ProfilePage";
+import ProductDetailPage from "./pages/ProductDetail/ProductDetailPage";
+import CheckoutPage from "./pages/Checkout/CheckoutPage";
+import TrackingPage from "./pages/Tracking/TrackingPage";
 import PlaceholderPage from "./components/common/PlaceholderPage";
 
-function AppPage({ title, description }) {
+function StandalonePage({ children, action }) {
   return (
-    <AppShell>
-      <PlaceholderPage title={title} description={description} />
-    </AppShell>
-  );
-}
-
-function StandalonePage({ title, description, action }) {
-  return (
-    <Standalone bottomActionBar={action ? <button type="button">{action}</button> : null}>
-      <PlaceholderPage title={title} description={description} />
+    <Standalone
+      bottomActionBar={
+        <button type="button" disabled>
+          {action}
+        </button>
+      }
+    >
+      {children}
     </Standalone>
   );
 }
@@ -22,12 +26,12 @@ function StandalonePage({ title, description, action }) {
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<AppPage title="Home" description="Home page foundation. Page components will be implemented in Phase 3." />} />
-      <Route path="/catalog" element={<AppPage title="Catalog" description="Catalog page foundation. Page components will be implemented in Phase 3." />} />
-      <Route path="/profile" element={<AppPage title="Profile" description="Profile page foundation. Page components will be implemented in Phase 3." />} />
-      <Route path="/product/:productId" element={<StandalonePage title="Product Detail" description="Product detail foundation." action="Add to Cart" />} />
-      <Route path="/checkout" element={<StandalonePage title="Checkout" description="Checkout foundation." action="Place Order" />} />
-      <Route path="/tracking/:orderId" element={<StandalonePage title="Tracking" description="Tracking foundation." action="Contact Support" />} />
+      <Route path="/" element={<AppShell><HomePage /></AppShell>} />
+      <Route path="/catalog" element={<AppShell><CatalogPage /></AppShell>} />
+      <Route path="/profile" element={<AppShell><ProfilePage /></AppShell>} />
+      <Route path="/product/:productId" element={<StandalonePage action="Add to Cart"><ProductDetailPage /></StandalonePage>} />
+      <Route path="/checkout" element={<StandalonePage action="Place Order"><CheckoutPage /></StandalonePage>} />
+      <Route path="/tracking/:orderId" element={<StandalonePage action="Contact Support"><TrackingPage /></StandalonePage>} />
       <Route path="*" element={<AppShell><PlaceholderPage title="Page not found" description="The requested route does not exist." /></AppShell>} />
     </Routes>
   );
