@@ -1,11 +1,17 @@
+import HomeHero from "../../components/home/HomeHero";
+import QuickActions from "../../components/home/QuickActions";
+import FeaturedProducts from "../../components/home/FeaturedProducts";
+import PromotionSection from "../../components/home/PromotionSection";
+import RecentActivity from "../../components/home/RecentActivity";
+
 export default function HomePage() {
   return (
     <div className="page-composition">
-      <section data-blueprint-component="HomeHero"><h1>Home Hero</h1></section>
-      <section data-blueprint-component="QuickActions"><h2>Quick Actions</h2></section>
-      <section data-blueprint-component="FeaturedProducts"><h2>Featured Products</h2></section>
-      <section data-blueprint-component="PromotionSection"><h2>Promotions</h2></section>
-      <section data-blueprint-component="RecentActivity"><h2>Recent Activity</h2></section>
+      <HomeHero />
+      <QuickActions />
+      <FeaturedProducts />
+      <PromotionSection />
+      <RecentActivity />
     </div>
   );
 }
