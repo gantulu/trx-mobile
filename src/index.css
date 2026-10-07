@@ -146,3 +146,14 @@ a { color: inherit; }
   }
   .bottom-navigation, .standalone__bottom-action-bar { left: 50%; width: 500px; transform: translateX(-50%); }
 }
+
+.page-composition { display: grid; gap: var(--space-xl); }
+.page-composition > section {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+.page-composition h1, .page-composition h2 { margin: 0; }
+.page-composition h1 { font-size: 24px; }
+.page-composition h2 { font-size: 18px; }
