@@ -1,10 +1,17 @@
+import ProfileHeader from "../../components/profile/ProfileHeader";
+import ProfileSummary from "../../components/profile/ProfileSummary";
+import ProfileMenu from "../../components/profile/ProfileMenu";
+import AccountActions from "../../components/profile/AccountActions";
+import profile from "../../components/undefined";
+
 export default function ProfilePage() {
   return (
     <div className="page-composition">
-      <section data-blueprint-component="ProfileHeader"><h1>Profile</h1></section>
-      <section data-blueprint-component="ProfileSummary"><h2>Summary</h2></section>
-      <section data-blueprint-component="ProfileMenu"><h2>Account Menu</h2></section>
-      <section data-blueprint-component="AccountActions"><h2>Account Actions</h2></section>
+      <ProfileHeader />
+      <ProfileSummary />
+      <ProfileMenu />
+      <AccountActions />
+      <profile />
     </div>
   );
 }
