@@ -18,7 +18,11 @@ export default function CatalogPage() {
       <CatalogHeader />
       <CategoryFilter categories={categories} value={category} onChange={setCategory} />
       <SearchBar value={query} onChange={setQuery} />
-      {products.length > 0 ? <ProductGrid query={query} category={category} /> : <CatalogEmptyState />}
+      {products.length > 0 ? (
+        <ProductGrid query={query} category={category} />
+      ) : (
+        <CatalogEmptyState />
+      )}
     </div>
   );
 }
