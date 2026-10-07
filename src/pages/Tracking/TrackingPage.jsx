@@ -1,11 +1,17 @@
+import TrackingHeader from "../../components/tracking/TrackingHeader";
+import OrderStatus from "../../components/tracking/OrderStatus";
+import TrackingTimeline from "../../components/tracking/TrackingTimeline";
+import DeliveryInformation from "../../components/tracking/DeliveryInformation";
+import OrderItems from "../../components/tracking/OrderItems";
+
 export default function TrackingPage() {
   return (
     <div className="page-composition">
-      <section data-blueprint-component="TrackingHeader"><h1>Tracking</h1></section>
-      <section data-blueprint-component="OrderStatus"><h2>Order Status</h2></section>
-      <section data-blueprint-component="TrackingTimeline"><h2>Tracking Timeline</h2></section>
-      <section data-blueprint-component="DeliveryInformation"><h2>Delivery Information</h2></section>
-      <section data-blueprint-component="OrderItems"><h2>Order Items</h2></section>
+      <TrackingHeader />
+      <OrderStatus />
+      <TrackingTimeline />
+      <DeliveryInformation />
+      <OrderItems />
     </div>
   );
 }
