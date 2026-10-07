@@ -1,3 +1,6 @@
-export default function ProductGrid() {
-  return <section className="ui-section"><h2>Products</h2><article className="ui-card"><strong>Product</strong><span className="ui-muted">Product data will be connected in Phase 5.</span></article></section>;
+import { useProducts } from "../../hooks/useProducts";
+
+export default function ProductGrid({ query = "", category = "All" }) {
+  const products = useProducts({ query, category });
+  return <section className="ui-section"><h2>Products</h2><div className="ui-card-grid">{products.map((product) => <article className="ui-card" key={product.id}><strong>{product.name}</strong><span className="ui-muted">{product.price.toLocaleString("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 })} · {product.rating}</span></article>)}</div></section>;
 }
