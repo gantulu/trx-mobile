@@ -1,0 +1,92 @@
+{
+  "blueprint": {
+    "version": "1.0",
+    "type": "app_ui_blueprint",
+    "app": {
+      "name": "TRX Mobile",
+      "platform": "web",
+      "layout": "mobile"
+    },
+    "shells": {
+      "appShell": {
+        "header": true,
+        "main": {
+          "pages": [
+            "Home",
+            "Catalog",
+            "Profile"
+          ]
+        },
+        "overlay": {
+          "enabled": true,
+          "components": [
+            "Modal",
+            "Drawer",
+            "Toast",
+            "Loading"
+          ]
+        },
+        "bottomActionBar": false
+      },
+      "standalone": {
+        "header": true,
+        "main": {
+          "pages": [
+            "ProductDetailPage",
+            "CheckoutPage",
+            "TrackingPage"
+          ]
+        },
+        "bottomActionBar": true
+      }
+    },
+    "pages": {
+      "Home": {
+        "type": "page",
+        "shell": "appShell",
+        "components": []
+      },
+      "Catalog": {
+        "type": "page",
+        "shell": "appShell",
+        "components": []
+      },
+      "Profile": {
+        "type": "page",
+        "shell": "appShell",
+        "components": []
+      },
+      "ProductDetailPage": {
+        "type": "page",
+        "shell": "standalone",
+        "components": []
+      },
+      "CheckoutPage": {
+        "type": "page",
+        "shell": "standalone",
+        "components": []
+      },
+      "TrackingPage": {
+        "type": "page",
+        "shell": "standalone",
+        "components": []
+      }
+    },
+    "components": {},
+    "navigation": {
+      "routes": []
+    },
+    "states": {
+      "global": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "overlay": [
+        "modal",
+        "drawer",
+        "toast"
+      ]
+    }
+  }
+}
